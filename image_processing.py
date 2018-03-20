@@ -54,8 +54,17 @@ def get_cell_mask(img,centroid,ptile=50,blur_sigma=11):
     thr = filters.threshold_otsu(M)
     M=M>thr
     L=measure.label(M)
-    RP=measure.regionprops(L,intensity_image=img)
-    return M,RP
+    RP=measure.regionprops(L,intensity_image=img,)
+    
+    d2=[]
+    for obj in RP:
+        d2.append((obj.centroid[0]-centroid[0])**2+(obj.centroid[1]-centroid[1])**2)
+    
+    keep=np.argmin(d2)
+    #print keep
+    M[L!=keep+1]=0
+
+    return M,RP[keep]
 
 def get_donut(center_mask):
     # takes a mask and returns the donut mask around it
