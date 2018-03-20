@@ -1,6 +1,8 @@
 # Cells2Image
 Learning algorithm for detecting cell structure changes from light microscopy data
 
+![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/cell_mask.png "Logo Title Text 1")!
+
 Team Assignments
 * Brad Busse - brad.busse@nih.gov - Team lead - Developer
 * Lars Von Buchholtz - lvonbuchholtz@nidcr.nih.gov - Developer
@@ -13,7 +15,17 @@ During the course of infection, the malaria parasite (a plasmodium) infects a he
 ## Problem
 The process of observing an infected Red Blood Cell for 2 days, awaiting or trying to predict a 10 minute long lytic event is tedious, and not very accurate. A software tool which can predict when an infected RBC will lyse would save time and result in better science. Observing infected RBC’s at high resolution requires high intensity light, which results in killing or damaging the cells, so brute force image collection at high resolution is not a solution. Our strategy is to capture a 2D image every 10 minutes, then analyze the image sequence to predict when a bursting event will happen, indicating the start of high resolution imaging. 
 
-![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/cell_mask.png "Logo Title Text 1")!
+![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/cell_mask.png "Cell Mask")!
+
+![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/circularity.png "Circularity")!
+
+![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/cluster_analysis1.png "Cluster Analysis")!
+
+![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/cluster_analysis_separated.png "Cluster Analysis Separated")!
+
+![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/cluster_analysis_tSNE.png "Cluster Analysis tSNE")!
+
+![figure](https://github.com/NCBI-Hackathons/Cells2Image/blob/master/images/fluorescence.png "Fluorescence")!
 
 ## Training
 In order to train our tool, we used 25 image sequences were created by acquiring an image at low intensity every 10 minutes through the bursting activity.
