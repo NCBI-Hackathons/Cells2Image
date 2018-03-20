@@ -14,11 +14,10 @@ def find_food_vacuole_centroid(frame):
     com = ndimage.measurements.center_of_mass(np.ones(labels.shape),labels,numlabel)
     return com, labels, numlabel
 
-def get_donut(center_mask):
+def get_donut(center_mask,r = 40):
     # takes a mask and returns the donut mask around it
     
     #generate circular mask for dilation
-    r = 50
     y,x = np.ogrid[-r:r, -r:r]
     circle = x*x + y*y <= r*r
     
@@ -27,3 +26,4 @@ def get_donut(center_mask):
     donut_mask = total_mask - center_mask
     
     return donut_mask
+
