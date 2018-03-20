@@ -6,38 +6,33 @@ from skimage import filters
 
 import load_images
 
-ix=0
+import image_processing as ip
+
+ix=11
 movie = skimage.io.imread(''.join([load_images.prefix,load_images.images[ix]['filename']]))
-#print images[ix]['rounded']
+# print images[ix]['rounded']
+stop=load_images.images[ix]['egress']
 
-A=movie[68,1,:,:]
+# circ=np.array(movie.shape[0])
+circ=[]
+for frame in range(stop):
+    A=movie[frame,1,:,:]
 
-B=np.abs(A-np.percentile(A.flatten(),75))
-B=ndimage.gaussian_filter(B,15)
-thr = filters.threshold_otsu(B)
-B=B>thr
+    B,RP=ip.get_cell_mask(A,(250,250),ptile=75,blur_sigma=15)
+    
+    if len(RP)!=0:
+        circ.append(4*np.pi*RP[0].area/(RP[0].perimeter**2))
 
-L=skimage.measure.label(B)
-RP=skimage.measure.regionprops(L,intensity_image=A,)
+    plt.subplot(1,2,1)
+    plt.imshow(A,cmap='gray')
+    plt.subplot(1,2,2)
+    plt.imshow(A*B,cmap='gray')
+    plt.show()
+    # plt.draw()
+    # plt.pause(0.001)
+    # plt.imshow(B,cmap='gray')
+    #plt.imshow(L,cmap='gray')
 
-print 4*np.pi*RP[0].area/(RP[0].perimeter**2)
 
-# B=A-ndimage.gaussian_filter(A,sigma=15)
-
-# B=ndimage.grey_dilation(A,15)-ndimage.gaussian_filter(A,15)
-
-# B=filters.scharr(A)
-
-# thr = filters.threshold_otsu(ndimage.gaussian_filter(A,55))
-# B=A-thr
-
-# B=ndimage.morphological_gradient(A,15)
-
-plt.subplot(1,2,1)
-plt.imshow(A,cmap='gray')
-plt.subplot(1,2,2)
-plt.imshow(A*B,cmap='gray')
-# plt.imshow(B,cmap='gray')
-#plt.imshow(L,cmap='gray')
-
+plt.plot(range(stop),circ[:stop])
 plt.show()

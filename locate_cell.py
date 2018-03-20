@@ -24,9 +24,7 @@ if __name__ == "__main__":
             com, labels, numlabels = ip.find_food_vacuole_centroid(frame[1,:,:])
             #com_out[labels==1] = 1
             rr,cc = skimage.draw.circle(com[0],com[1],10)
-            com_out[rr,cc] = 1
-
-            print com_out.shape
+            com_out[rr,cc] = 1            
             plt.imshow(com_out, alpha=0.25, cmap=plt.get_cmap('Oranges'))
 
             plt.draw()
