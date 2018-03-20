@@ -31,6 +31,12 @@ if __name__ == "__main__":
 
             feat.append(np.sum(frame[0,int(com[0])-50:int(com[0])+50,int(com[1])-50:int(com[1])+50]))
 
+            #if ef == 0:
+            #    centroid = com
+            #mask, RP = ip.get_cell_mask(frame,centroid)
+
+
+
             #feat.append(np.sum(frame[1,int(com[0])-50:int(com[0])+50,int(com[1])-50:int(com[1])+50]))
 
             features.append(feat)
