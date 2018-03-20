@@ -44,7 +44,9 @@ def synced_times(index, event='rounded'):
 
 def all_movies():
     for image in images:
+        print 'Loading movie',image['filename'],'...',
         img = skimage.io.imread(''.join([prefix,image['filename']]))
+        print 'loaded'
         yield img
         gc.collect()
 
