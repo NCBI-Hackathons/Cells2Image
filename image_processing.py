@@ -29,7 +29,7 @@ def topolar(img, order=1):
         j = radius*np.cos(theta) + 0.5*img.shape[1]
         return i,j
 
-    polar = geometric_transform(img, transform, order=order)
+    polar = ndimage.interpolation.geometric_transform(img, transform, order=order)
 
     rads = max_radius * np.linspace(0,1,img.shape[0])
     angs = np.linspace(0, 2*np.pi, img.shape[1])
