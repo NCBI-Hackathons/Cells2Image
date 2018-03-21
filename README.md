@@ -1,6 +1,6 @@
 # Mal-EgreTS - Malaria Egress Time Series tool
 ## Learning algorithm for detecting cell structure changes from light microscopy data
-![Learning algorithm for detecting cell structure changes from light microscopy data](images/MalEgreTS.png "Learning algorithm for detecting cell structure changes from light microscopy data")
+![Learning algorithm for detecting cell structure changes from light microscopy data](images/MalEgreTS.png "Learning algorithm for detecting cell structure changes from light microscopy data" | width=100px)
 
 ## Team Assignments
 * Brad Busse - brad.busse@nih.gov - Team lead - Developer
@@ -49,6 +49,3 @@ In order to train our tool, we used 25 image sequences that were created by acqu
 
 ## Tools used
 We used algorithms from scikit-image - Image Processing in Python. We also used Jupyter, Google Code, ImageJ 
-
-
-
