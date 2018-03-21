@@ -52,23 +52,34 @@ def find_food_vacuole_centroid(frame):
     com = ndimage.measurements.center_of_mass(np.ones(labels.shape),labels,numlabel)
     return com, labels, numlabel
 
-def get_cell_mask(img,centroid,ptile=50,blur_sigma=11):
+def get_cell_mask(frame,centroid,ptile=75,blur_sigma=15):
+    props=[]
+
+    #first get the mask from gray image
+    img=frame[0,:,:]
     M=np.abs(img-np.percentile(img.flatten(),ptile))
     M=ndimage.gaussian_filter(M,blur_sigma)
     thr = filters.threshold_otsu(M)
     M=M>thr
     L=measure.label(M)
-    RP=measure.regionprops(L,intensity_image=img,)
-
+    RP=measure.regionprops(L,intensity_image=img)
     d2=[]
     for obj in RP:
         d2.append((obj.centroid[0]-centroid[0])**2+(obj.centroid[1]-centroid[1])**2)
 
     keep=np.argmin(d2)
-    #print keep
     M[L!=keep+1]=0
+    props.append(RP[keep])
+    centroid=props[0].centroid
+    
+    #now get the region properties using the fluoresence channels
+    L=measure.label(M)
+    RP=measure.regionprops(L,intensity_image=frame[1,:,:])
+    props.append(RP[0])
+    RP=measure.regionprops(L,intensity_image=frame[2,:,:])
+    props.append(RP[0])
 
-    return M,RP[keep]
+    return centroid, props, M
 
 def get_donut(center_mask):
     # takes a mask and returns the donut mask around it
