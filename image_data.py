@@ -68,6 +68,11 @@ def all_frames(movie):
         timepoint = movie[frame,:,:,:].squeeze()
         yield timepoint
 
+def some_frames(movie,start,stop):
+    for ef,frame in enumerate(range(start,stop)):
+        timepoint = movie[frame,:,:,:].squeeze()
+        yield timepoint
+
 def fetch_random_frame():
     imgnum = random.randint(0,len(images))
     img = skimage.io.imread(''.join([prefix,images[imgnum]['filename']]))

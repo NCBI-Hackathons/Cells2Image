@@ -6,15 +6,13 @@ from skimage import filters
 from skimage import measure
 
 import image_data
-
 import image_processing as ip
 
 moviegen=image_data.all_movies()
 for em,movie in enumerate(moviegen):
-# for em in range(len(image_data.images)):
+
     start=max(image_data.images[em]['rounded']-30,0)
     stop=image_data.images[em]['egress']
-    # movie=image_data.load_movie(em)
     framegen=image_data.some_frames(movie,start,stop)
     x=image_data.synced_times(em)
     x=x[start:stop]
@@ -30,14 +28,16 @@ for em,movie in enumerate(moviegen):
         
         circ=4*np.pi*props[0].area/(props[0].perimeter**2)
         intens=props[1].mean_intensity
+        entrop=measure.shannon_entropy(props[0].image)
         
-        polar,(r,a) = ip.topolar(props[1].image)
-        radscore=np.var(polar.sum(axis=0))
+        # polar,(r,a) = ip.topolar(props[0].image)
+        # radscore=np.var(polar.sum(axis=0))
+        # radscore=ip.feature_radial_std(frame,centroid,radius=50)
 
-        features.append(intens)
-        # plt.imshow(polar,cmap='gray')
-        # plt.draw()
-        # plt.pause(0.01)
+        features.append(entrop)
+        plt.imshow(props[0].image,cmap='gray')
+        plt.draw()
+        plt.pause(0.01)
 
     features = np.array(features)
     maxfeat = features.max(axis=0)
@@ -46,7 +46,7 @@ for em,movie in enumerate(moviegen):
 
     plt.plot(x,features)
     # plt.draw()
-    # plt.pause(0.01)
+    plt.pause(0.01)
 
 plt.show
 
