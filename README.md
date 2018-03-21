@@ -1,8 +1,6 @@
 # Cells2Image
-![Learning algorithm for detecting cell structure changes from light microscopy data](images/Cover-Slide.jpg "Learning algorithm for detecting cell structure changes from light microscopy data")
-
-## AKA Pop goes the Merozoite
-![Pop goes the Merozoite](images/Cover-Slide-Funny.jpg "Pop goes the Merozoite!")
+## Learning algorithm for detecting cell structure changes from light microscopy data
+![Learning algorithm for detecting cell structure changes from light microscopy data](images/MalEgreTS.png "Learning algorithm for detecting cell structure changes from light microscopy data")
 
 ## Team Assignments
 * Brad Busse - brad.busse@nih.gov - Team lead - Developer
@@ -11,7 +9,7 @@
 * Jeremy Swan - jeremy.swan@nih.gov - Writer
 
 ## Background
-During the course of infection, the malaria parasite (a plasmodium) infects a hepatocyte in the liver, where it undergoes development into merozoites which grow and eventually lyse the cell. Merozoites move into the bloodstream, where they can infect red blood cells (RBCs). Once in a red blood cell (RBC), the merozoites feed and multiply, condensing hemoglobin into a vacuole, which is observed as a dark spot in differential interference contrast (DIC) microscopy. The merozoites feed and undergo several multiplication cycles over the course of several days, before the cell lyses, releasing merozoites into the bloodstream to infect other cells. We want to capture high resolution images of the merozoites bursting out of red blood cells.
+In the intraerythrocytic phase of malaria infection, Merozoites enter Red Blood Cells, where they feed and multiply, condensing digested hemoglobin and waste into a vacuole in the centriom, which is observed as a dark spot in differential interference contrast (DIC) microscopy. The merozoites feed and undergo several multiplication cycles over the course of several days, before the cell reaches egress, at which point it lyses, releasing merozoites into the bloodstream to infect other cells. We want to capture high resolution images of the merozoites bursting out of red blood cells.
 
 ![Merozoite infecting cell](images/merozoite.jpg "Merozoite infecting cell")
 
@@ -50,3 +48,18 @@ In order to train our tool, we used 25 image sequences that were created by acqu
 
 ## Tools used
 We used algorithms from scikit-image - Image Processing in Python. We also used Jupyter, Google Code, ImageJ 
+
+### title
+![figure](images/circularity.png "add images showing multiple cell trajectories")
+### title
+![figure](images/mean_intensity.png "add images showing multiple cell trajectories")
+### title
+![figure](images/radvar.png.png "add images showing multiple cell trajectories")
+### title
+![alt-text](images/trigger.png "added trigger2.png with derivative")
+### title
+![alt-text](images/trigger2.png "added threshold to derivative")
+### title
+![alt-text](images/trigger3.png "added trigger3.png")
+### title
+![alt-text](images/out.gif "animated gif showing...")
