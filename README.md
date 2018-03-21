@@ -24,7 +24,7 @@ In order to address this problem, we developed an algorithm operating on long-du
 ![figure](images/Pipeline.png "Process Flowchart")
 
 ### Cell Mask
-![figure](images/cell_mask.png "Cell Mask")
+![alt-text](images/out.gif "animated gif showing...")
 
 ### Circularity
 ![figure](images/circularity.png "Circularity")
@@ -61,5 +61,4 @@ We used algorithms from scikit-image - Image Processing in Python. We also used 
 ![alt-text](images/trigger2.png "added threshold to derivative")
 ### title
 ![alt-text](images/trigger3.png "added trigger3.png")
-### title
-![alt-text](images/out.gif "animated gif showing...")
+
