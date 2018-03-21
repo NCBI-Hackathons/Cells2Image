@@ -29,19 +29,17 @@ In order to address this problem, we developed an algorithm operating on long-du
 ### Circularity
 ![figure](images/circularity.png "Circularity")
 
+In order to estimate parasite circularity directly, we derived a mask of the parasite-filled vacuole using a process of mean subtraction, taking the absolute value, gaussian blurring, thresholding, and finally selecting the proper region according to prior positioning.  The ratio of the parasite's area to its perimeter (4*pi*area/perimeter^2) is a measurement of the region's circularity.
+
 ### Fluorescence
-![figure](images/fluorescence.png "Fluorescence")
+![figure](images/mean_intensity.png "Fluorescence")
 
-## Time Series Analysis
+The most direct of our tested features is the mean fluorescence of the vacuole mask.  The point of vacuole rupture brings with it a noticeable drop in fluorescence, which proved to be a reliably detectable, albeit slightly late marker.
 
-### Cluster Analysis
-![figure](images/cluster_analysis1.png "Cluster Analysis")
+### Radial Variance
+![figure](images/radvar.png "Radial Variance")
 
-### Cluster Analysis tSNE
-![figure](images/cluster_analysis_tSNE.png "Cluster Analysis tSNE")
-
-### Cluster Analysis Separated
-![figure](images/cluster_analysis_separated.png "Cluster Analysis Separated")
+Another feature of infected cells in the time period before egress is a retraction of EXP2 signalling (green channel) to the periphery of the parasite vacuole.  This could be observed by conducting a radial analysis outward from the food vacuole.  As the EXP2 retracts and the vacuole rounds, the radial variance drops sharply and measurably.
 
 ## Training
 In order to train our tool, we used 25 image sequences that were created by acquiring an image at low intensity once every minute through the bursting activity.
