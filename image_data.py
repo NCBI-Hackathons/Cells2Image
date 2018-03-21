@@ -48,7 +48,7 @@ def all_movies():
         print 'Loading movie',image['filename'],'...',
         img = load_movie(image['filename'])
         #img = skimage.io.imread(''.join([prefix,image['filename']]))
-        newimg = np.zeros((img.shape[0],3,img.shape[2],img.shape[3]))
+        newimg = np.zeros((img.shape[0],3,img.shape[2],img.shape[3]), dtype=np.uint16)
         if image['channel'] == 'gd':
             newimg[:,0,:,:] = img[:,1,:,:]
             newimg[:,1,:,:] = img[:,0,:,:]

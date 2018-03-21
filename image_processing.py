@@ -36,6 +36,10 @@ def topolar(img, order=1):
 
     return polar, (rads, angs)
 
+def feature_radial_std(frame,centroid,radius=50):
+    polar,(r,a) = topolar(frame[1,int(centroid[0])-radius:int(centroid[0])+radius,int(centroid[1])-radius:int(centroid[1])+radius])
+    score = np.std(polar.sum(axis=0))
+    return score
 
 def find_food_vacuole_centroid(frame):
     dark_thresh = np.percentile(frame,0.25)
@@ -55,11 +59,11 @@ def get_cell_mask(img,centroid,ptile=50,blur_sigma=11):
     M=M>thr
     L=measure.label(M)
     RP=measure.regionprops(L,intensity_image=img,)
-    
+
     d2=[]
     for obj in RP:
         d2.append((obj.centroid[0]-centroid[0])**2+(obj.centroid[1]-centroid[1])**2)
-    
+
     keep=np.argmin(d2)
     #print keep
     M[L!=keep+1]=0
