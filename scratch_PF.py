@@ -8,43 +8,63 @@ from skimage import measure
 import image_data
 import image_processing as ip
 
-moviegen=image_data.all_movies()
-for em,movie in enumerate(moviegen):
 
+# moviegen=image_data.all_movies()
+# for em,movie in enumerate(moviegen):
+    # print em
+
+for em in range(5):
+    # em=0
+    movie=image_data.load_movie(em)
     start=max(image_data.images[em]['rounded']-30,0)
-    stop=image_data.images[em]['egress']
+    stop=image_data.images[em]['egress']+10
     framegen=image_data.some_frames(movie,start,stop)
     x=image_data.synced_times(em)
     x=x[start:stop]
-    
+
     features=[]
     for ef,frame in enumerate(framegen):
         centroid,lab,nlab=ip.find_food_vacuole_centroid(frame[0,:,:])
         props,M=ip.get_cell_mask(frame,centroid,ptile=75,blur_sigma=15)
         
-        circ=4*np.pi*props[0].area/(props[0].perimeter**2)
+        # circ=4*np.pi*props[0].area/(props[0].perimeter**2)
+        # features.append(circ)
+
         intens=props[1].mean_intensity
-        entrop=measure.shannon_entropy(props[1].intensity_image)
+        features.append(intens)
+
+        # entrop=measure.shannon_entropy(props[1].intensity_image)
+        # features.append(entrop)
         
-        polar,(r,a) = ip.topolar(props[1].intensity_image)
-        radscore=np.var(polar.sum(axis=0))
-        # radscore=ip.feature_radial_std(frame,centroid,radius=50)
+        # polar,(r,a) = ip.topolar(props[1].intensity_image)
+        # radscore=np.var(polar.sum(axis=0))
+        # # radscore=ip.feature_radial_std(frame,centroid,radius=50)
+        # features.append(radscore)
 
-        features.append(radscore)
 
-
-        # plt.subplot(1,2,1)
+        # fig=plt.figure(1,figsize=(8,4));fig.clf()
+        # ax1=plt.subplot(1,2,1)
         # plt.cla()
         # plt.imshow(frame[0,:,:],cmap='gray')
         # plt.plot(centroid[1],centroid[0],'ro')
-        # plt.subplot(1,2,2)
+        # ax1.get_xaxis().set_ticks([])
+        # ax1.get_yaxis().set_ticks([])
+        
+        # ax2=plt.subplot(1,2,2)
         # plt.cla()
         # plt.imshow(M*frame[0,:,:],cmap='gray')
+        # ax2.get_xaxis().set_ticks([])
+        # ax2.get_yaxis().set_ticks([])
 
-        # plt.imshow(props[0].intensity_image,cmap='gray')
-        # plt.imshow(polar,cmap='gray')
+        # # plt.imshow(props[0].intensity_image,cmap='gray')
+        # # plt.imshow(polar,cmap='gray')
         # plt.draw()
         # plt.pause(0.01)
+
+        # filename="../scratchImage/image%i.jpg" % ef
+        # fig.savefig(filename,format='jpg')
+
+        # plt.close()
 
     features = np.array(features)
     maxfeat = features.max(axis=0)
@@ -52,10 +72,17 @@ for em,movie in enumerate(moviegen):
     features = (features.astype(np.float)-minfeat) / (maxfeat-minfeat)
 
     plt.plot(x,features)
+    plt.xlabel("frame")
+    # plt.ylabel("circularity")
+    plt.ylabel("mean intensity")
+    # plt.ylabel("radial variance")
     plt.draw()
     plt.pause(0.01)
 
-# plt.show
+# filename="images/circularity.png"
+filename="images/mean_intensity.png"
+# filename="images/radvar.png"
+plt.savefig(filename,format='png')
 
 
 # ix=1
