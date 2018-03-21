@@ -28,8 +28,13 @@ if __name__ == "__main__":
             #com_out[labels==1] = 1
             rr,cc = skimage.draw.circle(com[0],com[1],10)
             com_out[rr,cc] = 1
+            print com
+            polar,(r,a) = ip.topolar(frame[1,int(com[0])-50:int(com[0])+50,int(com[1])-50:int(com[1])+50])
+            score = np.std(polar.sum(axis=0))
 
-            feat.append(np.sum(frame[1,int(com[0])-50:int(com[0])+50,int(com[1])-50:int(com[1])+50]))
+
+            #feat.append(np.sum(frame[1,int(com[0])-50:int(com[0])+50,int(com[1])-50:int(com[1])+50]))
+            feat.append(score)
 
             #if ef == 0:
             #    centroid = com
