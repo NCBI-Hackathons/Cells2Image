@@ -1,6 +1,6 @@
 # Mal-EgreTS - Malaria Egress Time Series tool
 ## Learning algorithm for detecting cell structure changes from light microscopy data
-![Learning algorithm for detecting cell structure changes from light microscopy data](images/MalEgreTS.png "Learning algorithm for detecting cell structure changes from light microscopy data")
+![Learning algorithm for detecting cell structure changes from light microscopy data](images/MalEgreTS.jpg "Learning algorithm for detecting cell structure changes from light microscopy data")
 
 ## Team Assignments
 * Brad Busse - brad.busse@nih.gov - Team lead - Developer
