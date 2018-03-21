@@ -24,12 +24,12 @@ if __name__ == "__main__":
             feat = []
 
             com_out = np.zeros([frame.shape[1],frame.shape[2]])
-            com, labels, numlabels = ip.find_food_vacuole_centroid(frame[1,:,:])
+            com, labels, numlabels = ip.find_food_vacuole_centroid(frame[0,:,:])
             #com_out[labels==1] = 1
             rr,cc = skimage.draw.circle(com[0],com[1],10)
             com_out[rr,cc] = 1
 
-            feat.append(np.sum(frame[0,int(com[0])-50:int(com[0])+50,int(com[1])-50:int(com[1])+50]))
+            feat.append(np.sum(frame[1,int(com[0])-50:int(com[0])+50,int(com[1])-50:int(com[1])+50]))
 
             #if ef == 0:
             #    centroid = com
