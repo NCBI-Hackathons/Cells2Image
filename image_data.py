@@ -44,24 +44,24 @@ def synced_times(index, event='rounded'):
         return np.array(range(0,images[index]['length']))
 
 def all_movies():
-    for image in images:
-        print 'Loading movie',image['filename'],'...',
-        img = load_movie(image['filename'])
+    for ei,image in enumerate(images):
+        print 'Loading movie',image['filename']
+        img = load_movie(ei)
         #img = skimage.io.imread(''.join([prefix,image['filename']]))
-        newimg = np.zeros((img.shape[0],3,img.shape[2],img.shape[3]), dtype=np.uint16)
-        if image['channel'] == 'gd':
-            newimg[:,0,:,:] = img[:,1,:,:]
-            newimg[:,1,:,:] = img[:,0,:,:]
-        elif image['channel'] == 'rd':
-            newimg[:,0,:,:] = img[:,1,:,:]
-            newimg[:,2,:,:] = img[:,0,:,:]
-        print 'loaded'
-        yield newimg
+        yield img
         gc.collect()
 
-def load_movie(filename):
-    movie = skimage.io.imread(''.join([prefix,filename]))
-    return movie
+def load_movie(index):
+    movie = skimage.io.imread(''.join([prefix,images[index]['filename']]))
+    newimg = np.zeros((movie.shape[0],3,movie.shape[2],movie.shape[3]), dtype=np.uint16)
+    if images[index]['channel'] == 'gd':
+        newimg[:,0,:,:] = movie[:,1,:,:]
+        newimg[:,1,:,:] = movie[:,0,:,:]
+    elif images[index]['channel'] == 'rd':
+        newimg[:,0,:,:] = movie[:,1,:,:]
+        newimg[:,2,:,:] = movie[:,0,:,:]
+
+    return newimg
 
 def all_frames(movie):
     for ef,frame in enumerate(range(movie.shape[0])):
