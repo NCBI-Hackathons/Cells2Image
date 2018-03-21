@@ -19,25 +19,32 @@ for em,movie in enumerate(moviegen):
     
     features=[]
     for ef,frame in enumerate(framegen):
-
-        #first frame, centroid of food vacuole as marker for cell of interest
-        if ef==0:
-            centroid,lab,nlab=ip.find_food_vacuole_centroid(frame[0,:,:])
-
-        centroid,props,M=ip.get_cell_mask(frame,centroid,ptile=75,blur_sigma=15)
+        centroid,lab,nlab=ip.find_food_vacuole_centroid(frame[0,:,:])
+        props,M=ip.get_cell_mask(frame,centroid,ptile=75,blur_sigma=15)
         
         circ=4*np.pi*props[0].area/(props[0].perimeter**2)
         intens=props[1].mean_intensity
-        entrop=measure.shannon_entropy(props[0].image)
+        entrop=measure.shannon_entropy(props[1].intensity_image)
         
-        # polar,(r,a) = ip.topolar(props[0].image)
-        # radscore=np.var(polar.sum(axis=0))
+        polar,(r,a) = ip.topolar(props[1].intensity_image)
+        radscore=np.var(polar.sum(axis=0))
         # radscore=ip.feature_radial_std(frame,centroid,radius=50)
 
-        features.append(entrop)
-        plt.imshow(props[0].image,cmap='gray')
-        plt.draw()
-        plt.pause(0.01)
+        features.append(radscore)
+
+
+        # plt.subplot(1,2,1)
+        # plt.cla()
+        # plt.imshow(frame[0,:,:],cmap='gray')
+        # plt.plot(centroid[1],centroid[0],'ro')
+        # plt.subplot(1,2,2)
+        # plt.cla()
+        # plt.imshow(M*frame[0,:,:],cmap='gray')
+
+        # plt.imshow(props[0].intensity_image,cmap='gray')
+        # plt.imshow(polar,cmap='gray')
+        # plt.draw()
+        # plt.pause(0.01)
 
     features = np.array(features)
     maxfeat = features.max(axis=0)
@@ -45,10 +52,10 @@ for em,movie in enumerate(moviegen):
     features = (features.astype(np.float)-minfeat) / (maxfeat-minfeat)
 
     plt.plot(x,features)
-    # plt.draw()
+    plt.draw()
     plt.pause(0.01)
 
-plt.show
+# plt.show
 
 
 # ix=1

@@ -70,7 +70,6 @@ def get_cell_mask(frame,centroid,ptile=75,blur_sigma=15):
     keep=np.argmin(d2)
     M[L!=keep+1]=0
     props.append(RP[keep])
-    centroid=props[0].centroid
     
     #now get the region properties using the fluoresence channels
     L=measure.label(M)
@@ -79,7 +78,7 @@ def get_cell_mask(frame,centroid,ptile=75,blur_sigma=15):
     RP=measure.regionprops(L,intensity_image=frame[2,:,:])
     props.append(RP[0])
 
-    return centroid, props, M
+    return props, M
 
 def get_donut(center_mask):
     # takes a mask and returns the donut mask around it
