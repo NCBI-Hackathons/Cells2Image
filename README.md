@@ -41,22 +41,14 @@ The most direct of our tested features is the mean fluorescence of the vacuole m
 
 Another feature of infected cells in the time period before egress is a retraction of EXP2 signalling (green channel) to the periphery of the parasite vacuole.  This could be observed by conducting a radial analysis outward from the food vacuole.  As the EXP2 retracts and the vacuole rounds, the radial variance drops sharply and measurably.
 
+### Derivative-based trigger scheme
+![alt-text](images/trigger2.png "added threshold to derivative")
+
 ## Training
 In order to train our tool, we used 25 image sequences that were created by acquiring an image at low intensity once every minute through the bursting activity.
 
 ## Tools used
 We used algorithms from scikit-image - Image Processing in Python. We also used Jupyter, Google Code, ImageJ 
 
-### title
-![figure](images/circularity.png "add images showing multiple cell trajectories")
-### title
-![figure](images/mean_intensity.png "add images showing multiple cell trajectories")
-### title
-![figure](images/radvar.png.png "add images showing multiple cell trajectories")
-### title
-![alt-text](images/trigger.png "added trigger2.png with derivative")
-### title
-![alt-text](images/trigger2.png "added threshold to derivative")
-### title
-![alt-text](images/trigger3.png "added trigger3.png")
+
 
