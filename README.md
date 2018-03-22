@@ -1,6 +1,6 @@
 # EgreTT - a merezoite *Egre*ss *T*racking *T*ool for light microscopy studies
 
-![a merezoite Egress Tracking Tool for light microscopy studies](images/small egret.jpg "a merezoite Egress Tracking Tool for light microscopy studies")
+![a merezoite Egress Tracking Tool for light microscopy studies](images/small_egret.jpg "a merezoite Egress Tracking Tool for light microscopy studies")
 
 ## Team Assignments
 
