@@ -1,4 +1,4 @@
-# EgreTT - a merezoite Egress Tracking Tool for light microscopy studies
+# EgreTT - a merezoite *Egre*ss *T*racking *T*ool for light microscopy studies
 
 ![a merezoite Egress Tracking Tool for light microscopy studies](images/MalEgreTS.jpg "a merezoite Egress Tracking Tool for light microscopy studies")
 
