@@ -4,17 +4,3 @@ desktop.ini
 *.pyc
 .ipynb_checkpoints
 .DS_Store
-*.ipynb
-.ipynb_checkpoints/load_images-checkpoint.py
-.ipynb_checkpoints/image_processing-checkpoint.py
-.ipynb_checkpoints/scratchLars-checkpoint.ipynb
-.ipynb_checkpoints/track_food_vacuole-checkpoint.py
-.ipynb_checkpoints/Untitled-checkpoint.ipynb
-.DS_Store
-.ipynb_checkpoints/image_processing-checkpoint.py
-.ipynb_checkpoints/load_images-checkpoint.py
-.ipynb_checkpoints/plot_channel-checkpoint.py
-.ipynb_checkpoints/scratchLars-1-checkpoint.ipynb
-.ipynb_checkpoints/scratchLars-checkpoint.ipynb
-.ipynb_checkpoints/track_food_vacuole-checkpoint.py
-.ipynb_checkpoints/Untitled-checkpoint.ipynb
